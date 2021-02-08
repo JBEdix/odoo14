@@ -12,6 +12,45 @@ Instalacion Modulo openacademy
     6- En Aplicaciones le damos en actualizar lista de apps y luego en la parte derecha sale unos cuadros de vista, le damos en view kanban.
     7- Buscamos el modulo openacademy y aparecera luego lo instalamos.
 
+Tambien se puede descargando la maquina virtual bitnami odoo.
+Se abre la maquina virtual. se ejecuta y se espera a que salga el mensaje de la ip y la contraseña.
+Se entra a la ip desde el navegador y se ingresa las credenciales.
+
+    login: bitnami
+    pass: bitnami
+
+    ls
+
+    vim apps/odoo/conf/odoo-server.conf
+    Cambiamos la contraseña dentro del server odoo (admin_passwd): asd.456
+    reiniciamos: sudo reboot
+
+    Cambiar la contraseña dentro de la plataforma odoo:
+        -administrador/preference/change password
+
+    Nos deslogueamos y le damos en manage database:
+    creamos nueva db.
+        -En master pass tiene que se el (admin_passwd): asd.456 que configuramos en consola.
+        -Email: jheral.blanco@unah.hn
+        -pass: asd.456
+        -language: Spanish
+        ...
+
+    instalamos git: sudo apt-get install git
+
+    Creamos el repositorio del proyecto lo clonamos en windows y tambien en nuestro servidor de odoo.
+    Desde windows hacemos el push y desde el server hacemos el pull.
+    git clone https://github.com/JBEdix/odoo14
+
+    Configuramos la ruta
+        vim apps/odoo/conf/odoo-server.conf
+        agregamos en path: /home/bitnami/odoo14 <<Directorio de la carpeta clonada>>
+
+    traer lo del repositorio: git pull, dentro de la carpeta
+
+    Cada vez que hacemos un cambio debemos hacer pull y reiniciar los servicios
+    sudo service restart bitnami restart
+
 ORM:
     Es una capa que partiendo de una clase (poo) nos mapea la clase y se crea la base de datos.
     Con Model.
@@ -113,4 +152,15 @@ Action and Menus
         -Group Id son los diferentes niveles de acceso. usaurio, supervisor, admin. Por defecto lo dejamos en blanco, es decir que tienen acceso para todos.
         -Damos todos los permisos 1,1,1,1
     6- Reinicamos los servicios y ya nos saldra en el menu openacademy y podremos estar en course.
-    7- 
+
+Entorno de desarrollo
+    Activar conexion SSH
+    conectar el vscode con SSH
+    Ejecutar odoo en CLI
+
+    Activar conexion SSH: (https://docs.bitnami.com/virtual-machine/faq/get-started/enable-ssh/)
+        sudo rm -f /etc/ssh/sshd_not_to_be_run
+        sudo systemctl enable ssh
+        sudo systemctl start ssh
+
+        JB@DESKTOP-EVO9V80
