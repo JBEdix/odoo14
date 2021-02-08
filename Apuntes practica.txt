@@ -15,6 +15,7 @@ Instalacion Modulo openacademy
 ORM:
     Es una capa que partiendo de una clase (poo) nos mapea la clase y se crea la base de datos.
     Con Model.
+
     1- Creamos un  modelo en la carpeta principal: models/course.py
     2- agregamos la clase y los atributos. 
 
@@ -30,6 +31,32 @@ ORM:
     3- Agregamos tambien en la carpeta de course/__init__.py
         # -*- coding: utf-8 -*-
         from . import course
+
+Data files
+    <<Data files>> archivo de datos son codigos xml que sirve para insertar datos a los modelos o tablas creadas anteriormente.
+    1- en demo/demo.xml
+<odoo>
+
+    <record model="openacademy.course" id="course0">
+        <field name="name">Course 0</field>
+        <field name="description">Course 0's description
+
+Can have multiple lines
+        </field>
+    </record>
+    <record model="openacademy.course" id="course1">
+        <field name="name">Course 1</field>
+        <!-- no description for this one -->
+    </record>
+    <record model="openacademy.course" id="course2">
+        <field name="name">Course 2</field>
+        <field name="description">Course 2's description</field>
+    </record>
+
+</odoo>
+    Reiniciamos los servicios y en el modulo openacademy le damos actualizar.
+    2- en __manifest__.py en la parte de demo cambiamos /demo/demo.xml
+    3-
     4- 
     5-
     6-
