@@ -1,0 +1,36 @@
+Instalacion Modulo openacademy
+    1- Instalar odoo para windows desde la pag oficial.
+    2- Entrar en la carpeta de instalacion de odoo/server/odoo.conf y agregar la ruta donde configuraremos el nuevo modulo, en este caso openacademy.
+    3- segun la documentacion en https://www.odoo.com/documentation/14.0/howtos/backend.html?highlight=open%20academy crearemos unos archivos segun como sale alli.
+    4- Reiniciamos los servicios de odoo.
+    5- Cuando entremos en el servidor local de odoo en nuestro navegador, se puede observar que si tratamos de buscar el modulo openacademy no aparecera, lo cual tendremos que entrar al modo desarrollador/ administrador. 
+        Menu/ ajuste/ activar modo desarrollador   =>   Actualizar lista de aplicaciones.
+
+        o podemos entrar como admin por medio de la url => despues de localhost:port/web agregamos ?debug=1
+        quedaria localhost:port/web?debug=1 y luego actualizamos la lista de apps.
+
+    6- En Aplicaciones le damos en actualizar lista de apps y luego en la parte derecha sale unos cuadros de vista, le damos en view kanban.
+    7- Buscamos el modulo openacademy y aparecera luego lo instalamos.
+
+ORM:
+    Es una capa que partiendo de una clase (poo) nos mapea la clase y se crea la base de datos.
+    Con Model.
+    1- Creamos un  modelo en la carpeta principal: models/course.py
+    2- agregamos la clase y los atributos. 
+
+    from odoo import models, fields, api
+
+    class Course(models.Model):
+        _name = 'openacademy.course'
+        _description = "OpenAcademy Courses"
+    
+        name = fields.Char(string="Title", required=True)
+        description = fields.Text()
+
+    3- Agregamos tambien en la carpeta de course/__init__.py
+        # -*- coding: utf-8 -*-
+        from . import course
+    4- 
+    5-
+    6-
+    7- 
