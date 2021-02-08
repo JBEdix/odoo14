@@ -3,6 +3,7 @@ Instalacion Modulo openacademy
     2- Entrar en la carpeta de instalacion de odoo/server/odoo.conf y agregar la ruta donde configuraremos el nuevo modulo, en este caso openacademy.
     3- segun la documentacion en https://www.odoo.com/documentation/14.0/howtos/backend.html?highlight=open%20academy crearemos unos archivos segun como sale alli.
     4- Reiniciamos los servicios de odoo.
+    Para entrar al servidor local de odoo =====> localhost:8069/ <=====
     5- Cuando entremos en el servidor local de odoo en nuestro navegador, se puede observar que si tratamos de buscar el modulo openacademy no aparecera, lo cual tendremos que entrar al modo desarrollador/ administrador. 
         Menu/ ajuste/ activar modo desarrollador   =>   Actualizar lista de aplicaciones.
 
@@ -164,3 +165,39 @@ Entorno de desarrollo
         sudo systemctl start ssh
 
         JB@DESKTOP-EVO9V80
+
+Basic Views
+    Creamos en views/course.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="course_form_view">
+            <field name="name">course.form</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <form string="Course Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="course_search_view">
+            <field name="name">course.search</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+</odoo>
+
+Cuando agregamos otra vista lo agregamos en __manifest__ en la parte de views
+Recargamos el modulo
+
+La vista search ahora puede buscar por title y por description.
