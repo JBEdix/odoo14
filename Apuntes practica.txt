@@ -112,5 +112,5 @@ Action and Menus
             en model_academy_course. Cambiamos el '.' por '_'.
         -Group Id son los diferentes niveles de acceso. usaurio, supervisor, admin. Por defecto lo dejamos en blanco, es decir que tienen acceso para todos.
         -Damos todos los permisos 1,1,1,1
-    6-
+    6- Reinicamos los servicios y ya nos saldra en el menu openacademy y podremos estar en course.
     7- 
