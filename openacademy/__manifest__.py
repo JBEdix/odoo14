@@ -28,6 +28,7 @@
         'security/ir.model.access.csv', #niveles de acceso que tendra un modelo.
         'views/openacademy.xml',
         'views/course.xml',
+        'views/session.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

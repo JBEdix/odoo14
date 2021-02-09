@@ -197,7 +197,67 @@ Basic Views
         </record>
 </odoo>
 
-Cuando agregamos otra vista lo agregamos en __manifest__ en la parte de views
-Recargamos el modulo
+    Cuando agregamos otra vista lo agregamos en __manifest__ en la parte de views
+    Recargamos el modulo
 
-La vista search ahora puede buscar por title y por description.
+    La vista search ahora puede buscar por title y por description.
+
+Relaciones entre modelos
+    1- Creamos un nuevo modelo en models/session.py
+    from odoo import models, fields, api
+
+    class Session(models.Model):
+        _name = 'openacademy.session'
+        _description = "OpenAcademy Sessions"
+
+        name = fields.Char(required=True)
+        start_date = fields.Date()
+        duration = fields.Float(digits=(6, 2), help="Duration in days")
+        seats = fields.Integer(string="Number of seats")
+
+    2- En models/__init__.py:
+        from . import session
+
+    3- Agregamos una nueva vista relacionada al modelo, en views/session.xml:
+        <?xml version="1.0" encoding="UTF-8"?>
+        <odoo>
+            <!-- session form view -->
+            <record model="ir.ui.view" id="session_form_view">
+                <field name="name">session.form</field>
+                <field name="model">openacademy.session</field>
+                <field name="arch" type="xml">
+                    <form string="Session Form">
+                        <sheet>
+                            <group>
+                                <field name="name"/>
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+        
+            <record model="ir.actions.act_window" id="session_list_action">
+                <field name="name">Sessions</field>
+                <field name="res_model">openacademy.session</field>
+                <field name="view_mode">tree,form</field>
+            </record>
+        
+            <menuitem id="session_menu" name="Sessions"
+                        parent="openacademy_menu"
+                        action="session_list_action"/>
+        
+        </odoo>
+    4- actualizamos nuestro __manifest__.py:
+        'views/session.xml',
+    5- en security/ir.model.access.csv:
+        access_openacademy_session,openacademy.session,model_openacademy_session,,1,1,1,1
+    6- Relaciones entre campos:
+
+
+Herencia
+    Herencia modelos:
+        
+    Herencia Vista:
