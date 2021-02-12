@@ -195,7 +195,9 @@ Entorno de desarrollo
             sudo chmod -R 777 /opt/bitnami/apps/odoo/data/ 
 
         command odoo: https://www.odoo.com/documentation/14.0/reference/cmdline.html
-            odoo -c ~/apps/odoo/conf/odoo-server.conf -u openacademy 
+            odoo -c ~/apps/odoo/conf/odoo-server.conf -u openacademy -d Jheral
+
+                -d Jheral es la base de datos. 
 
         Cuando hagamos cambios hay que salir y volver a ejecutar el comando. I miss you angular :v
 
