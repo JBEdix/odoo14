@@ -159,12 +159,45 @@ Entorno de desarrollo
     conectar el vscode con SSH
     Ejecutar odoo en CLI
 
+    Si estamos en windows como maquina principal deberemos cambiar el valor a unos parametros, nos metemos en:
+        /etc/ssh/sshd_config
+            PasswordAuthentication yes
+            PermitRootLogin yes
+
     Activar conexion SSH: (https://docs.bitnami.com/virtual-machine/faq/get-started/enable-ssh/)
         sudo rm -f /etc/ssh/sshd_not_to_be_run
         sudo systemctl enable ssh
         sudo systemctl start ssh
 
-        JB@DESKTOP-EVO9V80
+    Abrimos una consola:
+        ssh user@ip
+
+    En vs code instalamos remote-ssh:
+        -Entramos en el boton verde de la parte inferior izquierda
+        -Le damos en connect to host,
+        -Add new ssh host.
+        -Agregamos: ssh bitnami@ip -A
+        -Si tenomos problemas en le damos en open configuration file
+
+    CLI bitnami:
+        Start or stop services: https://docs.bitnami.com/aws/faq/administration/control-services/
+            sudo /opt/bitnami/ctlscript.sh status
+            sudo /opt/bitnami/ctlscript.sh start
+            sudo /opt/bitnami/ctlscript.sh restart apache
+            sudo /opt/bitnami/ctlscript.sh stop
+            sudo /opt/bitnami/ctlscript.sh restart
+
+        Paramos los servicios:
+            sudo /opt/bitnami/ctlscript.sh stop odoo_gevent
+            sudo /opt/bitnami/ctlscript.sh stop odoo_background_worker
+        
+        Dar permisos a session:
+            sudo chmod -R 777 /opt/bitnami/apps/odoo/data/ 
+
+        command odoo: https://www.odoo.com/documentation/14.0/reference/cmdline.html
+            odoo -c ~/apps/odoo/conf/odoo-server.conf -u openacademy 
+
+        Cuando hagamos cambios hay que salir y volver a ejecutar el comando. I miss you angular :v
 
 Basic Views
     Creamos en views/course.xml:
@@ -259,5 +292,5 @@ Relaciones entre modelos
 
 Herencia
     Herencia modelos:
-        
+        Siguiendo el ejercicio de la documentacion, se nos genera un error al momento de usar el modelo partner y la vista partner. Esto se genera debido a que el xml esta esperando respuesta del modelo, pero el modelo no se ha cargado. La solucion a esto es comentar en __manifest__ la vista partner, reiniciar servicios y luego descomentar la vista.
     Herencia Vista:
