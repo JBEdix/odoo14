@@ -25,8 +25,8 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv', #niveles de acceso que tendra un modelo.
-        #'security/security.xml',
         'views/openacademy.xml',
         'views/course.xml',
         'views/session.xml',
