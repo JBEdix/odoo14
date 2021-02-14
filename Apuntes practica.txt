@@ -50,7 +50,7 @@ Se entra a la ip desde el navegador y se ingresa las credenciales.
     traer lo del repositorio: git pull, dentro de la carpeta
 
     Cada vez que hacemos un cambio debemos hacer pull y reiniciar los servicios
-    sudo service restart bitnami restart
+    sudo service bitnami restart
 
 ORM:
     Es una capa que partiendo de una clase (poo) nos mapea la clase y se crea la base de datos.
